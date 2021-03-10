@@ -22,6 +22,22 @@ class App extends Component {
       }))
   }
 
+  sortFirst() {
+      console.log('SORTING!!!!')
+      const sorted = results.sort( function(results, filteredResults){
+          if(results.data < filteredResults.data){
+              return -1
+          }
+          if (results.data < filteredResults.data){
+              return 1
+          }
+          return 0
+      })
+      console.log('Sorted List: ', sorted)
+      results([...sorted])
+  }    
+  
+
   handleInputChange = (e) => {
     this.setState({
       search: e.target.value.trim()
