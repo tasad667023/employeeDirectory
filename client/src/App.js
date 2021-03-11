@@ -20,22 +20,27 @@ class App extends Component {
         results: data.data.results,
         filteredResults: data.data.results
       }))
+      console.log(this.state)
   }
 
-  sortFirst() {
-      console.log('SORTING!!!!')
-      const sorted = results.sort( function(results, filteredResults){
-          if(results.data < filteredResults.data){
-              return -1
-          }
-          if (results.data < filteredResults.data){
-              return 1
-          }
-          return 0
-      })
-      console.log('Sorted List: ', sorted)
-      results([...sorted])
-  }    
+ sortFirst() {
+      console.log('sort first', this.state.results)
+  } 
+
+  // sortFirst() {
+  //     console.log('SORTING!!!!')
+  //     const sorted = results.sort( function(results, filteredResults){
+  //         if(results.data < filteredResults.data){
+  //             return -1
+  //         }
+  //         if (results.data < filteredResults.data){
+  //             return 1
+  //         }
+  //         return 0
+  //     })
+  //     console.log('Sorted List: ', sorted)
+  //     results([...sorted])
+  // }    
   
 
   handleInputChange = (e) => {
@@ -63,5 +68,7 @@ this.setState({
     );
   }
 }
+
+
 
 export default App;
