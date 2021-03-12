@@ -1,15 +1,15 @@
 import React from "react";
 import './style.css'
 
-function Header() {
+function Header(props) {
 
 
     return (
         <div className='information'>
-            <h1 onClick={()=> console.log("works")} >
+            <h1 onClick={props.sortFirst} >
                 First Name
             </h1>
-            <h1>
+            <h1 onClick={props.sortLast}>
                 Last Name
             </h1>
             <h1>

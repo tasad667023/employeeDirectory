@@ -20,28 +20,32 @@ class App extends Component {
         results: data.data.results,
         filteredResults: data.data.results
       }))
-      console.log(this.state)
+    console.log(this.state)
   }
 
- sortFirst() {
-      console.log('sort first', this.state.results)
-  } 
+  //  sortFirst= () => {
+  //       console.log('sort first', this.state.results)
+  //   } 
 
-  // sortFirst() {
-  //     console.log('SORTING!!!!')
-  //     const sorted = results.sort( function(results, filteredResults){
-  //         if(results.data < filteredResults.data){
-  //             return -1
-  //         }
-  //         if (results.data < filteredResults.data){
-  //             return 1
-  //         }
-  //         return 0
-  //     })
-  //     console.log('Sorted List: ', sorted)
-  //     results([...sorted])
-  // }    
-  
+  sortFirst = () => {
+    let results = this.state.results
+    console.log('SORTING!!!!')
+    const sorted = results.sort(function (a, b) {
+      if (a.name.first < b.name.first) {
+        return -1
+      }
+      if (a.name.first > b.name.first) {
+        return 1
+      }
+      return 0
+
+    })
+    console.log('Sorted List: ', results)
+    this.setState({
+      filteredResults: sorted
+    })
+  }
+
 
   handleInputChange = (e) => {
     this.setState({
@@ -50,20 +54,20 @@ class App extends Component {
   }
 
   handleSubmit = (e) => {
-const filterEmployee = this.state.results.filter((employee)=>{
-return employee.name.first.includes(this.state.search) || employee.name.last.includes(this.state.search)
-})
-this.setState({
-  filteredResults:filterEmployee
-})
+    const filterEmployee = this.state.results.filter((employee) => {
+      return employee.name.first.includes(this.state.search) || employee.name.last.includes(this.state.search)
+    })
+    this.setState({
+      filteredResults: filterEmployee
+    })
   }
 
   render() {
     return (
       <div className="App">
         < Search handleInputChange={this.handleInputChange} handleSubmit={this.handleSubmit} />
-        < Header />
-        < List results={this.state.filteredResults}  />
+        < Header sortFirst={this.sortFirst} />
+        < List results={this.state.filteredResults} />
       </div>
     );
   }
